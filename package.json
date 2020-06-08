@@ -1,0 +1,24 @@
+{
+  "name": "hngi7task2nodejs",
+  "version": "1.0.0",
+  "description": "a dockerized micro-service for resizing images and serving an appropriately sized one",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "multer": "^1.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmed2929/hngi7task2Nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahmed2929/hngi7task2Nodejs/issues"
+  },
+  "homepage": "https://github.com/ahmed2929/hngi7task2Nodejs#readme"
+}
