@@ -1,13 +1,9 @@
-const express=require('express');
-const Router=express.Router();
-const comtroller=require('./controller/main-controller');
+const express = require('express');
+const Router = express.Router();
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
+const controller = require('./controller/main-controller');
 
-Router.post('/add-img',comtroller.add_img)
+Router.post('/add-img', upload.single('image'), controller.resizeImage);
 
-Router.get('/img',comtroller.get_img)
-
-Router.get('/',(req,res)=>{
-res.send('working !!!')
-})
-
-module.exports=Router;
+module.exports = Router;
