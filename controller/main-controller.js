@@ -1,16 +1,19 @@
 
-let get_img=(req,res)=>{
-
+var add_img=(req,res)=>{
+    console.log('it runs')
+console.log(req.files)
 }
 
-let add_img=(req,res)=>{
-
+var get_img=(req,res)=>{
+console.log('get works')
 }
-
 
 
 
 module.exports={
-get_img,
-add_img
-}
+    add_img,
+    get_img
+    
+    
+    
+    }
