@@ -2,6 +2,7 @@ const fs = require('fs'),
     sizeOf = require('image-size'),
     Jimp = require('jimp');
 
+
 const resizeImage = (req, res) => {
     const { path, mimetype } = req.file;
     const { height, width, resolution } = req.body;
@@ -71,3 +72,4 @@ function deleteFile(path) {
 module.exports = {
     resizeImage
 }
+
