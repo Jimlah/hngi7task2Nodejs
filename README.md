@@ -1,10 +1,11 @@
 # hngi7task2Nodejs
- A dockerized micro-service for resizing images, editing and serving an appropriately sized one.
+ A dockerized micro-service for resizing images and serving an appropriately sized one.
 
 ## Features
 - Image resizing.
 - Accepts multiple image formats.
--Image Editing
+- Accepts multiple image formats.
+- Image resizing.
 - Fast and Scalable App
 
 ## API Endpoints
@@ -24,9 +25,10 @@
 - Run server with `npm start` to start server
 - In the app.js file we have our server initializtion
 - In the routes file we have the address of the api 
-- In the controller file the functions that api will doing 
-
+- In the controller file the function that api will doing 
 ## How to start the docker container
+
+
 Build the docker image
 docker build --tag flash-resize .
 
@@ -41,4 +43,10 @@ docker run -p 3000:3000 -d --name resize-app flash-resize
 -if no with, height or resolution the image is returned with its original size \
 -if no image is sent it return 400 \
 -if image not supported is sent it returns 422
--an optional filter param can be passed in the request's body to edit an image. Filters include : greyscale, sepia, pop, cool, invert.
+
+#Using filter options
+
+-A filter option can be passed to edit the resized image in the request body 
+-This option is passed in the body as a standard Key : value pair -- (filter : greyscale)
+-If this option isn't passed in the body or is passed with a null value, then the image would be resized without edits
+-valid options for editing the image include : greyscale, sepia, invert, cool, pop.
