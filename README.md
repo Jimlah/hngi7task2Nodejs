@@ -43,9 +43,10 @@ docker run -p 3000:3000 -d --name resize-app flash-resize
 -if no image is sent it return 400 \
 -if image not supported is sent it returns 422
 
-#Using filter options
+# Using filter options
 
 - A filter option can be passed to edit the resized image in the request body 
 - This option is passed in the body as a standard Key : value pair -- (filter : greyscale)
 - If this option isn't passed in the body or is passed with a null value, then the image would be resized without edits
 - valid options for editing the image include : greyscale, sepia, invert, cool, pop.
+- if this option is passed without width or height, then image is edited without being resized
