@@ -7,11 +7,6 @@ const PORT=3000;
 app.use(routes);
 
 
-
-
-
-
-
-app.listen(process.env.PORT|PORT,()=>{
+app.listen(process.env.PORT||PORT,()=>{
     console.log(`server is up on port ${PORT} `)
 })
