@@ -1,15 +1,42 @@
 # hngi7task2Nodejs
-a dockerized micro-service for resizing images and serving an appropriately sized one
+ A dockerized micro-service for resizing images and serving an appropriately sized one.
+
+## Features
+- Image resizing.
+- Accepts multiple image formats.
+- Fast and Scalable App
+
+## API Endpoints
+| Endpoint | Functionality |
+| ----------- | ----------- |
+| POST /resizeimg | resize Image |
+
+## Prerequisites
+- You need to have lastest version of Nodejs installed
+  
+## Installation / Setup
+- Fork the repository 
+- Clone the repo to your local machine 
+- Run that in your local machine in the project directory 
+- Run `npm install` to install all apllication dependencies
+- Run server with `npm start` to start server
+- In the app.js file we have our server initializtion
+- In the routes file we have the address of the api 
+- In the controller file the function that api will doing 
+## How to start the docker container
 
 
-to run the node app follow the steps 
-first you should fork the project \
-colne your forked project to your machine\
-push your changes into your forked repo \
-make pull request to merge with the master branch\
+Build the docker image
+docker build --tag flash-resize .
 
-run that in your local machine in the project directory \
-1- npm install \
-2-in the app.js file we have our server initializtion\
-2-in the routes file we have the address of the api \
-3-in the controller file the function that api will doing \
+Run the docker container
+docker run -p 3000:3000 -d --name resize-app flash-resize
+
+
+## How to start the docker container
+-you can send an image with its new width and height 
+-you can send an image with its new resolution
+-the new image will be downloaded automatically 
+-if no with, height or resolution the image is returned with its original size
+-if no image is sent it return 400
+-if image not supported is sent it returns 422

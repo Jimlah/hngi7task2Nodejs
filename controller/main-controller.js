@@ -6,7 +6,7 @@ const fs = require('fs'),
 const resizeImage = (req, res) => {
      // ensure image is sent
     if(!req.file){
-        return res.status(422).send({ status: "error", message: "No image specified" });
+        return res.status(400).send({ status: "error", message: "No image specified" });
 
     }
 
@@ -69,7 +69,7 @@ function resizeFile({ originalname, path }, width, height, res) {
                 .resize(parseInt(width) || Jimp.AUTO, parseInt(height) || Jimp.AUTO)
                 .writeAsync(newPath)
             // send resized image to client
-            res.download(newPath, (err) => {
+            res.status(201).download(newPath, (err) => {
                 if (err) console.log("Download_Error ::", err);
                 deleteFile(path) // delete uploaded file
                 deleteFile(newPath) // delete resized file
