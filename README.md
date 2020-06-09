@@ -45,7 +45,7 @@ docker run -p 3000:3000 -d --name resize-app flash-resize
 
 #Using filter options
 
--A filter option can be passed to edit the resized image in the request body 
--This option is passed in the body as a standard Key : value pair -- (filter : greyscale)
--If this option isn't passed in the body or is passed with a null value, then the image would be resized without edits
--valid options for editing the image include : greyscale, sepia, invert, cool, pop.
+- A filter option can be passed to edit the resized image in the request body 
+- This option is passed in the body as a standard Key : value pair -- (filter : greyscale)
+- If this option isn't passed in the body or is passed with a null value, then the image would be resized without edits
+- valid options for editing the image include : greyscale, sepia, invert, cool, pop.
