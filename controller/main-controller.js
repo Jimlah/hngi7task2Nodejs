@@ -6,11 +6,9 @@ const fs = require('fs'),
 const resizeImage = (req, res) => {
      // ensure image is sent
     if(!req.file){
-        return res.status(422).send({ status: "error", message: "No image specified" });
+        return res.status(400).send({ status: "error", message: "No image specified" });
 
     }
-
-
 
     const { path, mimetype } = req.file;
     const { height, width, resolution } = req.body;
@@ -30,9 +28,6 @@ const resizeImage = (req, res) => {
     originalWidth = dimensions.width;
     if(!(height||width||resolution)){
         return resizeFile(req.file, originalWidth, originalHeight, res);
-    }else if((!height&&!resolution&&width)||(height&&!resolution&&!width)){
-        return res.status(422).send({ status: "error", message: "Invalid Format. height and width must be spacified or resolution" });
-
     }
 
 
@@ -74,7 +69,7 @@ function resizeFile({ originalname, path }, width, height, res) {
                 .resize(parseInt(width) || Jimp.AUTO, parseInt(height) || Jimp.AUTO)
                 .writeAsync(newPath)
             // send resized image to client
-            res.download(newPath, (err) => {
+            res.status(201).download(newPath, (err) => {
                 if (err) console.log("Download_Error ::", err);
                 deleteFile(path) // delete uploaded file
                 deleteFile(newPath) // delete resized file

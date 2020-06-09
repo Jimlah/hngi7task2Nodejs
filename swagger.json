@@ -1,0 +1,111 @@
+{
+	"swagger": "2.0",
+	"info": {
+	  "version": "1.0",
+	  "title": "",
+	  "description": "A dockerized micro-service for resizing images and serving an appropriately sized one",
+	  "contact": {
+		  "email": "noemail@gmail.com"
+	  }
+	},
+	"host": "localhost:3000",
+	"basePath": "/",
+	"securityDefinitions": {},
+	"schemes": [
+	  "http"
+	],
+	"consumes": [
+	  "multipart/form-data"
+	],
+	"produces": [
+	  "application/json"
+	],
+	"paths": {
+	  "/resizeimg": {
+		"post": {
+		  "description": "Resize Image Route",
+		  "summary": "Send files to be resize",
+		  "tags": [
+			"images"
+		  ],
+		  "operationId": "postResizeImg",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			},
+			{
+			  "name": "Content-Type",
+			  "in": "header",
+			  "required": true,
+			  "type": "multipart/form-data",
+			  "description": "multipart/form-data:"
+			},
+			{
+			  "name": "Body",
+			  "in": "body",
+			  "required": false,
+        "description": "",
+        "schema": {
+          "$ref": "#/definitions/imagerequest"
+          }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "ok",
+			  "headers": {}
+      },
+      "422":{
+        "description": "Invalid Image. File must be in JPEG, PNG, BMP, TIFF or GIF format",
+        "headers":{}
+      },
+			"400": {
+			  "description": "no image is sent or image must be sent with name image",
+		      "headers": {}
+			}
+		  }
+		}
+    }
+  },
+  "definitions": {
+	  "imagerequest": {
+		"title": "imagerequest - you can only use width with height for the img or it resolution",
+		"example": {
+		  "width": "300",
+      "height": "700",
+      "resolution": "720"
+		},
+		"type": "object",
+		"properties": {
+		  "width": {
+			"type": "string"
+		  },
+		  "height": {
+			"type": "string"
+      },
+      "resolution":{
+        "type": "string"
+      }
+		},
+		"required": [
+      "height",
+      "width",
+      "resolution"
+		]
+    }
+  },
+	"tags": [
+		{
+		  "name": "images",
+		  "description": "This collection of API image uploads"
+		}
+  ]
+}
