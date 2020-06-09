@@ -60,7 +60,9 @@
 		  ],
 		  "responses": {
 			"200": {
+
 			  "description": "ok",
+
 			  "headers": {}
       },
       "422":{
@@ -68,7 +70,9 @@
         "headers":{}
       },
 			"400": {
+
 			  "description": "no image is sent or image must be sent with name image",
+
 		      "headers": {}
 			}
 		  }
@@ -77,7 +81,9 @@
   },
   "definitions": {
 	  "imagerequest": {
+
 		"title": "imagerequest - you can only use width with height for the img or it resolution",
+
 		"example": {
 		  "width": "300",
       "height": "700",

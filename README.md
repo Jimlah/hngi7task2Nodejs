@@ -4,11 +4,14 @@
 ## Features
 - Image resizing.
 - Accepts multiple image formats.
+- Accepts multiple image formats.
+- Image resizing.
 - Fast and Scalable App
 
 ## API Endpoints
 | Endpoint | Functionality |
 | ----------- | ----------- |
+
 | POST /resizeimg | resize Image |
 
 ## Prerequisites
