@@ -1,5 +1,6 @@
 const fs = require('fs'),
     sizeOf = require('image-size'),
+    {applyFilter} = require('./filter'),
     Jimp = require('jimp');
 
 
@@ -11,7 +12,7 @@ const resizeImage = (req, res) => {
     }
 
     const { path, mimetype } = req.file;
-    const { height, width, resolution } = req.body;
+    const { height, width, resolution, filter } = req.body;
 
    
    
@@ -27,12 +28,12 @@ const resizeImage = (req, res) => {
     originalHeight = dimensions.height,
     originalWidth = dimensions.width;
     if(!(height||width||resolution)){
-        return resizeFile(req.file, originalWidth, originalHeight, res);
+        return resizeFile(req.file, originalWidth, originalHeight, filter, res);
     }
 
 
     // use width and height if provided in the body
-    if (height || width) return resizeFile(req.file, width, height, res);
+    if (height || width) return resizeFile(req.file, width, height, filter, res);
 
     
 
@@ -49,7 +50,7 @@ const resizeImage = (req, res) => {
         newHeight = resolution;
         newWidth = originalWidth * ratio;
     }
-    resizeFile(req.file, newWidth, newHeight, res);
+    resizeFile(req.file, newWidth, newHeight, filter, res);
 }
 
 /**
@@ -63,7 +64,12 @@ function resizeFile({ originalname, path }, width, height, res) {
     // save image file with a unique name
     const newPath = `./uploads/${Date.now()}_${originalname}`;
 
-    Jimp.read(path)
+    if(filter){
+        applyFilter(width, height, path, newPath, filter, res);//apply a filter 
+        deleteFile(path); // delete uploaded file
+    }
+    else{
+        Jimp.read(path)
         .then(async image => {
             await image
                 .resize(parseInt(width) || Jimp.AUTO, parseInt(height) || Jimp.AUTO)
@@ -75,6 +81,7 @@ function resizeFile({ originalname, path }, width, height, res) {
                 deleteFile(newPath) // delete resized file
             })
         });
+    }
 }
 
 /**
