@@ -4,8 +4,7 @@
 ## Features
 - Image resizing.
 - Accepts multiple image formats.
-- Accepts multiple image formats.
-- Image resizing.
+- Image editing
 - Fast and Scalable App
 
 ## API Endpoints
