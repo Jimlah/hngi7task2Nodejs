@@ -4,7 +4,7 @@ a dockerized micro-service for resizing images and serving an appropriately size
 
 to run the node app follow the steps 
 first you should fork the project \
-colne your forked project to your machine\
+clone your forked project to your machine\
 push your changes into your forked repo \
 make pull request to merge with the master branch\
 
