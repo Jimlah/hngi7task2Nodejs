@@ -10,8 +10,6 @@ const resizeImage = (req, res) => {
 
     }
 
-
-
     const { path, mimetype } = req.file;
     const { height, width, resolution } = req.body;
 
@@ -30,9 +28,6 @@ const resizeImage = (req, res) => {
     originalWidth = dimensions.width;
     if(!(height||width||resolution)){
         return resizeFile(req.file, originalWidth, originalHeight, res);
-    }else if((!height&&!resolution&&width)||(height&&!resolution&&!width)){
-        return res.status(422).send({ status: "error", message: "Invalid Format. height and width must be spacified or resolution" });
-
     }
 
 
