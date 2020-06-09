@@ -4,8 +4,17 @@ const fs = require('fs'),
 
 
 const resizeImage = (req, res) => {
+     // ensure image is sent
+    if(!req.file){
+        return res.status(400).send({ status: "error", message: "No image specified" });
+
+    }
+
     const { path, mimetype } = req.file;
     const { height, width, resolution } = req.body;
+
+   
+   
 
     // ensure uploaded file is valid
     const allowedTypes = ["image/jpeg", "image/png", "image/bmp", "image/tiff", "image/gif"];
@@ -13,13 +22,23 @@ const resizeImage = (req, res) => {
         return res.status(422).send({ status: "error", message: "Invalid Image. File must be in JPEG, PNG, BMP, TIFF or GIF format" });
     }
 
+    // if no height or width or resolution return the original img
+    const dimensions = sizeOf(path),
+    originalHeight = dimensions.height,
+    originalWidth = dimensions.width;
+    if(!(height||width||resolution)){
+        return resizeFile(req.file, originalWidth, originalHeight, res);
+    }
+
+
     // use width and height if provided in the body
     if (height || width) return resizeFile(req.file, width, height, res);
 
+    
+
+
     // use formula to deduce width and height using provided resolution
-    const dimensions = sizeOf(path),
-        originalHeight = dimensions.height,
-        originalWidth = dimensions.width;
+   
 
     let ratio = resolution / originalWidth,
         newHeight = originalHeight * ratio,
@@ -50,7 +69,7 @@ function resizeFile({ originalname, path }, width, height, res) {
                 .resize(parseInt(width) || Jimp.AUTO, parseInt(height) || Jimp.AUTO)
                 .writeAsync(newPath)
             // send resized image to client
-            res.download(newPath, (err) => {
+            res.status(201).download(newPath, (err) => {
                 if (err) console.log("Download_Error ::", err);
                 deleteFile(path) // delete uploaded file
                 deleteFile(newPath) // delete resized file
