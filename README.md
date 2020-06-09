@@ -34,9 +34,9 @@ docker run -p 3000:3000 -d --name resize-app flash-resize
 
 
 ## docs
--you can send an image with its new width and height 
--you can send an image with its new resolution
--the new image will be downloaded automatically 
--if no with, height or resolution the image is returned with its original size
--if no image is sent it return 400
--if image not supported is sent it returns 422
+-you can send an image with its new width and height \
+-you can send an image with its new resolution \
+-the new image will be downloaded automatically \
+-if no with, height or resolution the image is returned with its original size \
+-if no image is sent it return 400 \
+-if image not supported is sent it returns 422 \
