@@ -2,7 +2,8 @@
  A dockerized micro-service for resizing images and serving an appropriately sized one.
 
 ## Features
-- Image upload.
+- Image resizing.
+- Accepts multiple image formats.
 - Accepts multiple image formats.
 - Image resizing.
 - Fast and Scalable App
@@ -10,7 +11,8 @@
 ## API Endpoints
 | Endpoint | Functionality |
 | ----------- | ----------- |
-| POST /upload | Upload Image |
+
+| POST /resizeimg | resize Image |
 
 ## Prerequisites
 - You need to have lastest version of Nodejs installed
@@ -20,20 +22,24 @@
 - Clone the repo to your local machine 
 - Run that in your local machine in the project directory 
 - Run `npm install` to install all apllication dependencies
-- Run server with `npm run dev` to start server
+- Run server with `npm start` to start server
 - In the app.js file we have our server initializtion
 - In the routes file we have the address of the api 
 - In the controller file the function that api will doing 
-
-## Hosted Pages
-https://deployedsite.com
+## How to start the docker container
 
 
-## License
-[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
+Build the docker image
+docker build --tag flash-resize .
 
-## Contribute To This Project
-[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+Run the docker container
+docker run -p 3000:3000 -d --name resize-app flash-resize
 
-### Contributors
-Add contributor names here
+
+## docs
+-you can send an image with its new width and height \
+-you can send an image with its new resolution \
+-the new image will be downloaded automatically \
+-if no with, height or resolution the image is returned with its original size \
+-if no image is sent it return 400 \
+-if image not supported is sent it returns 422

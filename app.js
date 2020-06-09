@@ -4,7 +4,7 @@ const routes=require('./routes')
 const cors = require('cors')
 const  swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
-const PORT=3000;
+const PORT=process.env.PORT||3000;
 app.use(cors())
 app.use(routes);
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
@@ -15,6 +15,6 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 
-app.listen(process.env.PORT|PORT,()=>{
+app.listen(PORT,()=>{
     console.log(`server is up on port ${PORT} `)
 })

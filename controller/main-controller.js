@@ -6,7 +6,7 @@ const fs = require('fs'),
 const resizeImage = (req, res) => {
      // ensure image is sent
     if(!req.file){
-        return res.status(422).send({ status: "error", message: "No image specified" });
+        return res.status(400).send({ status: "error", message: "No image specified" });
 
     }
 
