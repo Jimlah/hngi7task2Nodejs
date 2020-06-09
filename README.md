@@ -33,7 +33,7 @@ Run the docker container
 docker run -p 3000:3000 -d --name resize-app flash-resize
 
 
-## How to start the docker container
+## docs
 -you can send an image with its new width and height 
 -you can send an image with its new resolution
 -the new image will be downloaded automatically 
