@@ -69,7 +69,7 @@ function resizeFile({ originalname, path }, width, height, res) {
                 .resize(parseInt(width) || Jimp.AUTO, parseInt(height) || Jimp.AUTO)
                 .writeAsync(newPath)
             // send resized image to client
-            res.download(newPath, (err) => {
+            res.status(201).download(newPath, (err) => {
                 if (err) console.log("Download_Error ::", err);
                 deleteFile(path) // delete uploaded file
                 deleteFile(newPath) // delete resized file
