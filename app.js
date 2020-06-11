@@ -9,10 +9,8 @@ app.use(cors())
 app.use(routes);
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-
-
-
-
+// Send swagger documentation as json
+app.use('/v1/documentation', (_, res) => res.send(swaggerDocument));
 
 app.listen(PORT,()=>{
     console.log(`server is up on port ${PORT} `)
