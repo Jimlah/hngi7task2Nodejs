@@ -6,11 +6,10 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 const PORT=process.env.PORT||3000;
 app.use(cors())
-app.use(routes);
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/v1', routes);
 
-// Send swagger documentation as json
-app.use('/v1/documentation', (_, res) => res.send(swaggerDocument));
+// Index route should render the swagger full documentation 
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(PORT,()=>{
     console.log(`server is up on port ${PORT} `)
