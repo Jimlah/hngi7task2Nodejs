@@ -9,10 +9,6 @@
     }
   },
   "basePath": "/",
-  "schemes": [
-    "http",
-    "https"
-  ],
   "paths": {
     "/resizeimg": {
       "post": {
