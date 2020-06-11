@@ -1,117 +1,80 @@
 {
-	"swagger": "2.0",
-	"info": {
-	  "version": "1.0",
-	  "title": "",
-	  "description": "A dockerized micro-service for resizing images and serving an appropriately sized one",
-	  "contact": {
-		  "email": "noemail@gmail.com"
-	  }
-	},
-	"host": "localhost:3000",
-	"basePath": "/",
-	"securityDefinitions": {},
-	"schemes": [
-	  "http"
-	],
-	"consumes": [
-	  "multipart/form-data"
-	],
-	"produces": [
-	  "application/json"
-	],
-	"paths": {
-	  "/resizeimg": {
-		"post": {
-		  "description": "Resize Image Route",
-		  "summary": "Send files to be resize",
-		  "tags": [
-			"images"
-		  ],
-		  "operationId": "postResizeImg",
-		  "deprecated": false,
-		  "produces": [
-			"application/json"
-		  ],
-		  "parameters": [
-			{
-			  "name": "Authorization",
-			  "in": "header",
-			  "required": false,
-			  "default": "Bearer {token}",
-			  "type": "string"
-			},
-			{
-			  "name": "Content-Type",
-			  "in": "header",
-			  "required": true,
-			  "type": "multipart/form-data",
-			  "description": "multipart/form-data:"
-			},
-			{
-			  "name": "Body",
-			  "in": "body",
-			  "required": false,
+  "swagger": "2.0",
+  "info": {
+    "description": "A dockerized micro-service for resizing images and serving an appropraitely sized one",
+    "version": "1.0.0",
+    "title": "Image Editor",
+    "contact": {
+      "url": "https://github.com/Jimlah/hngi7task2Nodejs/issues"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {
+    "/resizeimg": {
+      "post": {
+        "tags": [
+          "Resize Image"
+        ],
+        "summary": "Image Resizing tool",
         "description": "",
-        "schema": {
-          "$ref": "#/definitions/imagerequest"
+        "operationId": "resized",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "image/jpeg",
+          "image/gif",
+          "image/png",
+          "image/bmp",
+          "image/tiff"
+        ],
+        "parameters": [
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "Image to be resized",
+            "required": true,
+            "type": "file"
+          },
+          {
+            "name": "height",
+            "in": "formData",
+            "description": "New height of Image. If undefined, image resizes based on other parameters provided",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "width",
+            "in": "formData",
+            "description": "New width of Image: If undefined, image resizes based on other parameters provided",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "resolution",
+            "in": "formData",
+            "description": "New resolution of Image. If undefined, image resizes based on other parameters provided ",
+            "type": "string",
+            "required": false
           }
-			}
-		  ],
-		  "responses": {
-			"200": {
-
-			  "description": "ok",
-
-			  "headers": {}
-      },
-      "422":{
-        "description": "Invalid Image. File must be in JPEG, PNG, BMP, TIFF or GIF format",
-        "headers":{}
-      },
-			"400": {
-
-			  "description": "no image is sent or image must be sent with name image",
-
-		      "headers": {}
-			}
-		  }
-		}
-    }
-  },
-  "definitions": {
-	  "imagerequest": {
-
-		"title": "imagerequest - you can only use width with height for the img or it resolution",
-
-		"example": {
-		  "width": "300",
-      "height": "700",
-      "resolution": "720"
-		},
-		"type": "object",
-		"properties": {
-		  "width": {
-			"type": "string"
-		  },
-		  "height": {
-			"type": "string"
-      },
-      "resolution":{
-        "type": "string"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad request.Image not specified"
+          },
+          "422": {
+            "description": "Invalid Image. File must be in JPEG, PNG, BMP, Tor GIF format"
+          }
+        }
       }
-		},
-		"required": [
-      "height",
-      "width",
-      "resolution"
-		]
     }
-  },
-	"tags": [
-		{
-		  "name": "images",
-		  "description": "This collection of API image uploads"
-		}
-  ]
+  }
 }
