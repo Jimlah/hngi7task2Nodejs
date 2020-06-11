@@ -17,9 +17,9 @@ const resizeImage = (req, res) => {
    
 
     // ensure uploaded file is valid
-    const allowedTypes = ["image/jpeg", "image/png", "image/bmp", "image/tiff", "image/gif"];
+    const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/bmp", "image/tiff", "image/gif"];
     if (!allowedTypes.includes(mimetype)) {
-        return res.status(422).send({ status: "error", message: "Invalid Image. File must be in JPEG, PNG, BMP, TIFF or GIF format" });
+        return res.status(422).send({ status: "error", message: "Invalid Image. File must be in JPG, JPEG, PNG, BMP, TIFF or GIF format" });
     }
 
     // if no height or width or resolution return the original img
