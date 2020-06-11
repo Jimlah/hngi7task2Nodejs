@@ -4,12 +4,16 @@
 ## Features
 - Image resizing.
 - Accepts multiple image formats.
+- Accepts multiple image formats.
+- Image resizing.
 - Fast and Scalable App
 
 ## API Endpoints
-| Endpoint | Functionality |
-| ----------- | ----------- |
-| POST /resizeimg | resize Image |
+| Endpoint                | Functionality         |
+| ------------------------| ----------------------|
+| GET   /                 | Swagger Documentation |
+| GET   /v1/documentation | JSON Documentation    |
+| POST  /v1/resizeimg     | Resize Image          |
 
 ## Prerequisites
 - You need to have lastest version of Nodejs installed
@@ -27,16 +31,36 @@
 
 
 Build the docker image
-docker build --tag flash-resize .
+
+    docker build --tag flash-resize .
 
 Run the docker container
-docker run -p 3000:3000 -d --name resize-app flash-resize
+
+    docker run -p 3000:3000 -d --name resize-app flash-resize
 
 
-## docs
--you can send an image with its new width and height \
--you can send an image with its new resolution \
--the new image will be downloaded automatically \
--if no with, height or resolution the image is returned with its original size \
--if no image is sent it return 400 \
--if image not supported is sent it returns 422
+## Image Api Documentation
+API_ENDPOINT : https://imgresizeak.herokuapp.com/v1/resizeimg
+
+SWAGGER_ENDPOINT : https://imgresizeak.herokuapp.com
+
+Accepted Image Formats  : PNG, BMP, TIFF, BMP or GIF
+
+Access the API via a POST request and name the image **image**
+  | Response Status Code | Meanings                                                 |
+  | -------------------- | -------------------------------------------------------- |
+  | 400                  | No image was specified                                   |
+  | 422                  | Image Specified is not supported. Check supported images |
+
+Operation  : 
+
+- You can send the height of the image and the new image will return with the height choosen with the appropriate width.
+- You can send the width of the image and the new image will return with the height choosen  with the appropriate height.
+- You can send both width and height and the image will return with the width and height choosen.
+- You can just send the resolution of the image you want and the image will return with the given resolution.
+- If you send resolution with the width and height the returned image will match your specified width and height.
+
+**Note :**
+
+- If no width, height or resolution is sent the original image you sent is returned
+ 

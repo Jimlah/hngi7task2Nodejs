@@ -2,7 +2,7 @@
 FROM node:10
 
 # create working directory
-WORKDIR /usr/src/app
+WORKDIR /usr/src/service
 
 # Install dependencies
 COPY package*.json ./
