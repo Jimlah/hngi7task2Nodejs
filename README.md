@@ -9,10 +9,11 @@
 - Fast and Scalable App
 
 ## API Endpoints
-| Endpoint | Functionality |
-| -------- | ------------- |
-
-| POST /resizeimg | resize Image |
+| Endpoint                | Functionality         |
+| ------------------------| ----------------------|
+| GET   /                 | Swagger Documentation |
+| GET   /v1/documentation | JSON Documentation    |
+| POST  /v1/resizeimg     | Resize Image          |
 
 ## Prerequisites
 - You need to have lastest version of Nodejs installed
@@ -30,19 +31,22 @@
 
 
 Build the docker image
-docker build --tag flash-resize .
+
+    docker build --tag flash-resize .
 
 Run the docker container
-docker run -p 3000:3000 -d --name resize-app flash-resize
+
+    docker run -p 3000:3000 -d --name resize-app flash-resize
 
 
 ## Image Api Documentation
-API_ENDPOINT : https://imgresizeak.herokuapp.com/resizeimg\
-SWAGGER_ENDPOINT : https://imgresizeak.herokuapp.com/docs
+API_ENDPOINT : https://imgresizeak.herokuapp.com/v1/resizeimg
+
+SWAGGER_ENDPOINT : https://imgresizeak.herokuapp.com
 
 Accepted Image Formats  : PNG, BMP, TIFF, BMP or GIF
 
-Acess the Api Via a POST request and name the image **image**
+Access the API via a POST request and name the image **image**
   | Response Status Code | Meanings                                                 |
   | -------------------- | -------------------------------------------------------- |
   | 400                  | No image was specified                                   |
@@ -58,5 +62,5 @@ Operation  :
 
 **Note :**
 
-- If no width, height or resolution is sent the original image you sent is returned \
+- If no width, height or resolution is sent the original image you sent is returned
  

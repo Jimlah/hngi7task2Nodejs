@@ -10,7 +10,7 @@
   },
   "basePath": "/",
   "paths": {
-    "/resizeimg": {
+    "/v1/resizeimg": {
       "post": {
         "tags": [
           "Resize Image"
