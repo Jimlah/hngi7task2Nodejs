@@ -14,6 +14,8 @@
 | GET   /                 | Swagger Documentation |
 | GET   /v1/documentation | JSON Documentation    |
 | POST  /v1/resizeimg     | Resize Image          |
+| POST  /register/        | Register a new user   |
+| POST  /auth             | Login existing user   |
 
 ## Prerequisites
 - You need to have lastest version of Nodejs installed
@@ -38,7 +40,14 @@ Run the docker container
 
     docker run -p 3000:3000 -d --name resize-app flash-resize
 
-
+## Accessing the API
+The api is only accessible to registered users.
+### To register
+- access the endpoint /register via a post request
+- include a username and password in the body of the request
+### To Log back in
+- access the endpoint /auth via a post request
+- include a username and password in the body of the request
 ## Image Api Documentation
 API_ENDPOINT : https://imgresizeak.herokuapp.com/v1/resizeimg
 
@@ -46,7 +55,8 @@ SWAGGER_ENDPOINT : https://imgresizeak.herokuapp.com
 
 Accepted Image Formats  : PNG, BMP, TIFF, BMP or GIF
 
-Access the API via a POST request and name the image **image**
+- Access the API via a POST request and name the image **image** in the body of the request
+- Pass the generated token in the head of the request using **x-access-token** : **generatedtoken**
   | Response Status Code | Meanings                                                 |
   | -------------------- | -------------------------------------------------------- |
   | 400                  | No image was specified                                   |
