@@ -11,10 +11,7 @@ const resizeImage = (req, res) => {
     }
 
     const { path, mimetype } = req.file;
-    const { height, width, resolution } = req.body;
-
-   
-   
+    const { height, width, resolution } = req.body;   
 
     // ensure uploaded file is valid
     const allowedTypes = ["image/jpeg", "image/png", "image/bmp", "image/tiff", "image/gif"];
