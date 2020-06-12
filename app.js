@@ -20,7 +20,7 @@ app.use('/v1', verifyToken, routes);
 app.use(cors());
 
 //Register a User
-app.use('/register', register)
+app.use('/configure', register)
 
 //Authenticate a registered User
 app.use('/auth', authenticate);
