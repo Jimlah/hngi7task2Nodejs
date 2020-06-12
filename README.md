@@ -14,7 +14,7 @@
 | GET   /                 | Swagger Documentation |
 | GET   /v1/documentation | JSON Documentation    |
 | POST  /v1/resizeimg     | Resize Image          |
-| POST  /register/        | Register a new user   |
+| POST  /Configure/        | Register a new user   |
 | POST  /auth             | Login existing user   |
 
 ## Prerequisites
@@ -43,7 +43,7 @@ Run the docker container
 ## Accessing the API
 The api is only accessible to registered users.
 ### To register
-- access the endpoint /register via a post request
+- access the endpoint /configure via a post request
 - include a username and password in the body of the request
 ### To Log back in
 - access the endpoint /auth via a post request
