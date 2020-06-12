@@ -2,7 +2,7 @@
 	"swagger": "2.0",
 	"info": {
 	  "version": "1.0",
-	  "title": "",
+	  "title": "A Dockerized Image Resizer API Docs",
 	  "description": "A dockerized micro-service for resizing images and serving an appropriately sized one",
 	  "contact": {
 		  "email": "noemail@gmail.com"
